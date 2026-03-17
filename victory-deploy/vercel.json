@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "name": "victory-pwa",
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "headers": {
+        "cache-control": "public,max-age=0,must-revalidate"
+      }
+    }
+  ],
+  "functions": {},
+  "regions": ["iad1"],
+  "public": true
+}

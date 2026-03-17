@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "victory-fb944"
+  },
+  "targets": {
+    "victory-fb944": {
+      "hosting": {
+        "pwa": [
+          "victory-fb944"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

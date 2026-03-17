@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - PurposePartner</title>
+    <link rel="manifest" href="./manifest.json">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .debug-info {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .warning { background: #fff3cd; color: #856404; }
+        pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 PurposePartner Debug Dashboard</h1>
+    
+    <div class="debug-info">
+        <h3>Firebase Status</h3>
+        <div id="firebase-status" class="status info">Checking...</div>
+        <div id="auth-status" class="status info">Checking...</div>
+        <div id="user-info" class="status info">Checking...</div>
+    </div>
+
+    <div class="debug-info">
+        <h3>Firestore Listener Status</h3>
+        <div id="listener-status" class="status info">Checking...</div>
+        <div id="blocked-events" class="status info">Checking...</div>
+    </div>
+
+    <div class="debug-info">
+        <h3>Recent Console Logs</h3>
+        <div id="console-logs" class="status info">No logs yet...</div>
+    </div>
+
+    <!-- Firebase SDK for Auth + Firestore -->
+    <script type="module">
+        import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getFirestore, collection, query, where, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC4HhpXcYdGhvFRIz4IHksilgnMnRDbiS8",
+            authDomain: "victory-fb944.firebaseapp.com",
+            projectId: "victory-fb944",
+            storageBucket: "victory-fb944.firebasestorage.app",
+            messagingSenderId: "650310438797",
+            appId: "1:650310438797:web:c0bd9a1caaa6093d5137c4"
+        };
+
+        // 🔥 Initialize Firebase FIRST
+        const app = getApps().length
+            ? getApps()[0]
+            : initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Set persistence to keep user logged in across page reloads
+        await setPersistence(auth, browserLocalPersistence);
+
+        // Debug: Override console.log to capture logs
+        const originalLog = console.log;
+        const logs = [];
+        console.log = function(...args) {
+            logs.push(new Date().toISOString() + ' - ' + args.join(' '));
+            originalLog.apply(console, args);
+            updateConsoleDisplay();
+        };
+
+        function updateConsoleDisplay() {
+            const logsDiv = document.getElementById('console-logs');
+            if (logsDiv) {
+                logsDiv.innerHTML = '<pre>' + logs.slice(-10).join('\n') + '</pre>';
+            }
+        }
+
+        function updateStatus(id, message, type = 'info') {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = message;
+                element.className = `status ${type}`;
+            }
+        }
+
+        // Check Firebase initialization
+        updateStatus('firebase-status', '✅ Firebase initialized successfully', 'success');
+
+        onAuthStateChanged(auth, (user) => {
+            console.log("Auth check fired", user);
+
+            if (user) {
+                console.log("User authenticated:", user.uid);
+                updateStatus('auth-status', `✅ User authenticated: ${user.uid}`, 'success');
+                updateStatus('user-info', `✅ Email: ${user.email}`, 'success');
+                
+                // Request notification permission
+                if (Notification.permission !== "granted") {
+                    Notification.requestPermission().then(permission => {
+                        console.log("Notification permission:", permission);
+                    });
+                }
+                
+                // Listen for blocked events from extension
+                const blockedEventsQuery = query(
+                    collection(db, "blockedEvents"),
+                    where("userId", "==", user.uid)
+                );
+
+                onSnapshot(blockedEventsQuery, (snapshot) => {
+                    console.log("Blocked events snapshot size:", snapshot.size);
+                    updateStatus('listener-status', `✅ Listener active - ${snapshot.size} events`, 'success');
+                    
+                    snapshot.docChanges().forEach((change) => {
+                        if (change.type === "added") {
+                            const data = change.doc.data();
+                            console.log("New blocked event:", data);
+                            showBlockedNotification(data.blockedUrl);
+                            updateStatus('blocked-events', `🚫 New blocked: ${data.blockedUrl}`, 'warning');
+                        }
+                    });
+                });
+                
+                return;
+            }
+
+            console.log("No authenticated user.");
+            updateStatus('auth-status', '❌ No authenticated user', 'error');
+            updateStatus('user-info', '❌ No user found', 'error');
+            updateStatus('listener-status', '❌ Listener not started', 'error');
+            updateStatus('blocked-events', '❌ No events', 'error');
+        });
+
+        // Notification helper function
+        function showBlockedNotification(url) {
+            console.log("Showing notification for:", url);
+            if (Notification.permission === "granted") {
+                new Notification("Blocked Website Attempt", {
+                    body: "You attempted to access: " + url,
+                    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%238B1538'/><path d='M30 40 L50 25 L70 40 L70 65 L30 65 Z' fill='white'/><circle cx='50' cy='55' r='8' fill='%238B1538'/></svg>"
+                });
+            }
+        }
+
+        // Check existing blocked events
+        setTimeout(async () => {
+            try {
+                const blockedEventsRef = collection(db, "blockedEvents");
+                const snapshot = await getDocs(blockedEventsRef);
+                console.log("Existing blocked events count:", snapshot.size);
+                if (snapshot.size > 0) {
+                    updateStatus('blocked-events', `📊 Found ${snapshot.size} existing events`, 'info');
+                } else {
+                    updateStatus('blocked-events', '📊 No existing events found', 'warning');
+                }
+            } catch (error) {
+                console.error("Error checking blocked events:", error);
+                updateStatus('blocked-events', `❌ Error: ${error.message}`, 'error');
+            }
+        }, 2000);
+
+        // Logout button event listener
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+            await signOut(auth);
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>

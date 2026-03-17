@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - PurposePartner</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B1538;
+            --secondary-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --dark-color: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--light-color) 0%, #fff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .links a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message, .success-message {
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            border: 1px solid #fcc;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #363;
+            border: 1px solid #cfc;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: var(--primary-color);
+            margin-top: 1rem;
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <h1>PurposePartner</h1>
+            <p>Sign in to your account</p>
+        </div>
+
+        <div id="error-message" class="error-message" style="display: none;"></div>
+        <div id="success-message" class="success-message" style="display: none;"></div>
+
+        <form id="signin-form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+
+            <button type="submit" class="btn" id="signin-btn">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+        </form>
+
+        <div class="links">
+            <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+            <p><a href="index.html">← Back to Home</a></p>
+        </div>
+
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner"></i> Signing you in...
+        </div>
+    </div>
+
+    <!-- Firebase SDK for Auth + Firestore -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/ajax/libs/firebase/9.22.0/firebase-app.js';
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            createUserWithEmailAndPassword,
+            signInWithPopup,
+            GoogleAuthProvider,
+            signOut as firebaseSignOut,
+            onAuthStateChanged,
+            updateProfile
+        } from 'https://www.gstatic.com/ajax/libs/firebase/9.22.0/firebase-auth.js';
+        import {
+            getFirestore,
+            collection,
+            doc,
+            addDoc,
+            getDoc,
+            getDocs,
+            updateDoc,
+            query,
+            where,
+            orderBy,
+            limit,
+            onSnapshot,
+            deleteDoc,
+            setDoc
+        } from 'https://www.gstatic.com/ajax/libs/firebase/9.22.0/firebase-firestore.js';
+
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyC4HhpXcYdGhvFRIz4IHksilgnMnRDbiS8",
+            authDomain: "victory-fb944.firebaseapp.com",
+            projectId: "victory-fb944",
+            storageBucket: "victory-fb944.firebasestorage.app",
+            messagingSenderId: "650310438797",
+            appId: "1:650310438797:web:c0bd9a1caaa6093d5137c4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        // Make globally available
+        window.auth = auth;
+        window.db = db;
+        window.googleProvider = googleProvider;
+        window.firebaseAuth = {
+            signInWithEmailAndPassword,
+            createUserWithEmailAndPassword,
+            signInWithPopup,
+            firebaseSignOut,
+            onAuthStateChanged,
+            updateProfile,
+            GoogleAuthProvider
+        };
+        window.firestore = { collection, doc, addDoc, getDoc, getDocs, updateDoc, query, where, orderBy, limit, onSnapshot, deleteDoc, setDoc };
+
+        // Simple Email Authentication System
+        class SimpleAuth {
+            static async login(email, password) {
+                try {
+                    const userCredential = await window.firebaseAuth.signInWithEmailAndPassword(window.auth, email, password);
+                    const user = userCredential.user;
+                    return user;
+                } catch (error) {
+                    console.error('Login error:', error);
+                    throw error;
+                }
+            }
+
+            static onAuthStateChanged(callback) {
+                window.firebaseAuth.onAuthStateChanged(window.auth, callback);
+            }
+        }
+
+        // Login form
+        document.getElementById('signin-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error-message');
+            const loading = document.getElementById('loading');
+            const signinBtn = document.getElementById('signin-btn');
+
+            errorDiv.style.display = 'none';
+            loading.style.display = 'block';
+            signinBtn.disabled = true;
+
+            try {
+                await SimpleAuth.login(email, password);
+                window.location.href = 'dashboard.html';
+            } catch (error) {
+                errorDiv.textContent = getErrorMessage(error);
+                errorDiv.style.display = 'block';
+                loading.style.display = 'none';
+                signinBtn.disabled = false;
+            }
+        });
+
+        function getErrorMessage(error) {
+            switch (error.code) {
+                case 'auth/user-not-found':
+                case 'auth/wrong-password':
+                    return 'Invalid email or password';
+                case 'auth/invalid-email':
+                    return 'Invalid email address';
+                default:
+                    return error.message || 'Authentication error';
+            }
+        }
+    </script>
+</body>
+</html>

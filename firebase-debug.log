@@ -1,0 +1,101 @@
+[debug] [2025-11-27T04:31:38.525Z] ----------------------------------------------------------------------
+[debug] [2025-11-27T04:31:38.533Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting --debug
+[debug] [2025-11-27T04:31:38.534Z] CLI Version:   14.20.0
+[debug] [2025-11-27T04:31:38.534Z] Platform:      win32
+[debug] [2025-11-27T04:31:38.534Z] Node Version:  v22.20.0
+[debug] [2025-11-27T04:31:38.535Z] Time:          Wed Nov 26 2025 20:31:38 GMT-0800 (Pacific Standard Time)
+[debug] [2025-11-27T04:31:38.535Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-11-27T04:31:39.186Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-11-27T04:31:39.189Z] > authorizing via signed-in user (vic9876k@gmail.com)
+[debug] [2025-11-27T04:31:39.190Z] [iam] checking project victory-fb944 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-11-27T04:31:39.195Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:39.197Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:39.199Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions [none]
+[debug] [2025-11-27T04:31:39.200Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions x-goog-quota-user=projects/victory-fb944
+[debug] [2025-11-27T04:31:39.202Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-11-27T04:31:41.302Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions 200
+[debug] [2025-11-27T04:31:41.304Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-11-27T04:31:41.306Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:41.312Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:41.314Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/victory-fb944 [none]
+[debug] [2025-11-27T04:31:41.794Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/victory-fb944 200
+[debug] [2025-11-27T04:31:41.795Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/victory-fb944 {"projectId":"victory-fb944","projectNumber":"650310438797","displayName":"Victory","name":"projects/victory-fb944","resources":{"hostingSite":"victory-fb944"},"state":"ACTIVE","etag":"1_08b7f616-dff1-4e17-93b9-587870b989e2"}
+[info] 
+[info] === Deploying to 'victory-fb944'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2025-11-27T04:31:41.805Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:41.811Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:41.812Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions [none]
+[debug] [2025-11-27T04:31:41.814Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2025-11-27T04:31:43.849Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions 200
+[debug] [2025-11-27T04:31:43.850Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions {"name":"projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[victory-fb944]: beginning deploy... 
+[info] i  hosting[victory-fb944]: found 10 files in deploy 
+[debug] [2025-11-27T04:31:43.902Z] [hosting] uploading with 200 concurrency
+[debug] [2025-11-27T04:31:43.911Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:43.913Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:43.916Z] [hosting] hash cache [ZGVwbG95] stored for 10 files
+[debug] [2025-11-27T04:31:43.916Z] [hosting][hash queue][FINAL] {"max":3,"min":1,"avg":1,"active":0,"complete":10,"success":10,"errored":0,"retried":0,"total":10,"elapsed":10}
+[debug] [2025-11-27T04:31:43.919Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8:populateFiles [none]
+[debug] [2025-11-27T04:31:43.920Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8:populateFiles {"files":{"/sw.js":"ad71941adcc999610e8eb81f4457259228f3f34811d195ed00c2b78baf249685","/signup.html":"e985d00007f910424f70039d58250e5c53fcdb3f04f6634cb8a27f1901cc0280","/offline.html":"6adccb5cf7a3d17a5d1bd07837dc00a401bdd9d327c230d6db0a74c6609381e3","/manifest.json":"cb89b150e15c87ef5c4e6753ed8820f8a43ad894e7f8fca312755ea073be332e","/login.html":"967874121a8be58a2fb6a27496b63180b3e5f0963a2e11345dd594049229c51f","/index.html":"6e860e821a4cf2a6db2fdeaba4f9369a89e5c3b8e83aeb455950f00fde0b53db","/firebase-config.js":"f049fbc31eaa6639a8d28ed887648eedbe225d220b04548e14a097330467bd54","/dashboard.html":"039a03863be83e89d63766daccb44b8334b3ef1b8b0d3dd1e63a8cd9bad15eb9","/icons/icon-512.png":"c6dfe9e9ad1e7ce8f4d2d21ceb994ca9c9edb686c2c4e7fa75749a077238fa6d","/icons/icon-192.png":"ffe1ec2da7c2c4caf4b11494ba8a51fc092fda1f2e3f12a2e6848fceea846ce8"}}
+[debug] [2025-11-27T04:31:44.425Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8:populateFiles 200
+[debug] [2025-11-27T04:31:44.426Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/victory-fb944/versions/b79b4bc6fcc9f6b8/files"}
+[debug] [2025-11-27T04:31:44.428Z] [hosting][populate queue][FINAL] {"max":517,"min":517,"avg":517,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":518}
+[debug] [2025-11-27T04:31:44.429Z] [hosting] uploads queued: 0
+[debug] [2025-11-27T04:31:44.430Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1764217904430}
+[info] i  hosting: upload complete 
+[info] +  hosting[victory-fb944]: file upload complete 
+[debug] [2025-11-27T04:31:44.434Z] [hosting] deploy completed after 575ms
+[debug] [2025-11-27T04:31:44.435Z] [
+  {
+    "config": {
+      "site": "victory-fb944",
+      "public": "deploy",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**",
+        "**/*.exe",
+        "**/*.msi",
+        "**/*.bat",
+        "**/*.cmd",
+        "**/*.ps1",
+        "**/*.sh",
+        "**/*.dll",
+        "**/*.so",
+        "**/*.dylib",
+        "**/generate-icons.ps1",
+        "**/deploy-*.bat",
+        "**/manual-*.bat",
+        "**/temp/**",
+        "**/tmp/**"
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    "version": "projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8"
+  }
+]
+[info] i  hosting[victory-fb944]: finalizing version... 
+[debug] [2025-11-27T04:31:44.448Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:44.448Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:44.450Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/b79b4bc6fcc9f6b8 updateMask=status%2Cconfig
+[debug] [2025-11-27T04:31:44.453Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/b79b4bc6fcc9f6b8 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}],"cleanUrls":true,"trailingSlashBehavior":"REMOVE"}}
+[debug] [2025-11-27T04:31:44.764Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/b79b4bc6fcc9f6b8 200
+[debug] [2025-11-27T04:31:44.765Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/b79b4bc6fcc9f6b8 {"name":"projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}],"cleanUrls":true,"trailingSlashBehavior":"REMOVE"},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2025-11-26T17:31:25.257601Z","createUser":{"email":"vic9876k@gmail.com"},"finalizeTime":"2025-11-26T17:31:26.497314Z","finalizeUser":{"email":"vic9876k@gmail.com"}}
+[debug] [2025-11-27T04:31:44.768Z] [hosting] finalized version for victory-fb944:[object Object]
+[info] +  hosting[victory-fb944]: version finalized 
+[info] i  hosting[victory-fb944]: releasing new version... 
+[debug] [2025-11-27T04:31:44.769Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:44.770Z] Checked if tokens are valid: true, expires at: 1764220527660
+[debug] [2025-11-27T04:31:44.773Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/channels/live/releases versionName=projects%2F650310438797%2Fsites%2Fvictory-fb944%2Fversions%2Fb79b4bc6fcc9f6b8
+[debug] [2025-11-27T04:31:44.775Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/channels/live/releases {}
+[debug] [2025-11-27T04:31:45.128Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/channels/live/releases 200

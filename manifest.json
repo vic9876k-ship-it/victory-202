@@ -1,0 +1,33 @@
+{
+  "name": "PurposePartner - Accountability Heroes",
+  "short_name": "PurposePartner",
+  "description": "Accountability partner app for Victory browser extension",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#8B1538",
+  "theme_color": "#8B1538",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%238B1538'/><path d='M30 40 L50 25 L70 40 L70 65 L30 65 Z' fill='white'/><circle cx='50' cy='55' r='8' fill='%238B1538'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%238B1538'/><path d='M30 40 L50 25 L70 40 L70 65 L30 65 Z' fill='white'/><circle cx='50' cy='55' r='8' fill='%238B1538'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["productivity", "lifestyle", "social"],
+  "lang": "en-US",
+  "scope": "/",
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23ECF0F1'/><text x='640' y='360' text-anchor='middle' font-family='Arial' font-size='48' fill='%238B1538'>PurposePartner Dashboard</text></svg>",
+      "sizes": "1280x720",
+      "type": "image/svg+xml",
+      "form_factor": "wide"
+    }
+  ]
+}

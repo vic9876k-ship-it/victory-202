@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PurposePartner</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B1538;
+            --secondary-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --dark-color: #2C3E50;
+            --success-color: #27AE60;
+            --warning-color: #F39C12;
+            --danger-color: #E74C3C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light-color);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .welcome-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .welcome-section h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .features-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            padding: 1.5rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: var(--primary-color);
+        }
+
+        .feature-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .feature-item p {
+            color: #666;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            PurposePartner
+        </div>
+        <div class="user-info">
+            <div class="user-avatar" id="user-avatar">U</div>
+            <span id="user-name">User</span>
+            <button class="logout-btn" onclick="signOut()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="welcome-section">
+            <h1 id="welcome-name">Welcome back!</h1>
+            <p>You are making a difference in people's lives through accountability and encouragement.</p>
+        </section>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Partners Supported</h3>
+                <div class="number" id="partners-count">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Encouragements Sent</h3>
+                <div class="number" id="encouragements-count">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Victories Celebrated</h3>
+                <div class="number" id="victories-count">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Days Active</h3>
+                <div class="number" id="days-active">0</div>
+            </div>
+        </div>
+
+        <section class="features-section">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--secondary-color);">Your Dashboard</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-bell"></i>
+                    <h4>Receive Notifications</h4>
+                    <p>Get alerts when your accountability partners need encouragement during moments of temptation.</p>
+                    <button class="btn">View Notifications</button>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-comments"></i>
+                    <h4>Send Encouragement</h4>
+                    <p>Share biblical encouragement and prayer support with those you're helping on their journey.</p>
+                    <button class="btn">Send Message</button>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Track Progress</h4>
+                    <p>Monitor the impact of your encouragement and celebrate victories together.</p>
+                    <button class="btn">View Stats</button>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-users"></i>
+                    <h4>Community Support</h4>
+                    <p>Connect with other accountability partners and share experiences in the community.</p>
+                    <button class="btn">Join Community</button>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-pray"></i>
+                    <h4>Prayer Requests</h4>
+                    <p>Share prayer requests and lift up your accountability partners in prayer.</p>
+                    <button class="btn">Prayer Wall</button>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-book"></i>
+                    <h4>Biblical Resources</h4>
+                    <p>Access curated Bible verses and devotionals for encouragement and strength.</p>
+                    <button class="btn">Browse Resources</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Firebase SDK for Auth + Firestore -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/ajax/libs/firebase/9.22.0/firebase-app.js';
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            createUserWithEmailAndPassword,
+            signInWithPopup,
+            GoogleAuthProvider,
+            signOut as firebaseSignOut,
+            onAuthStateChanged,
+            updateProfile
+        } from 'https://www.gstatic.com/ajax/libs/firebase/9.22.0/firebase-auth.js';
+        import {
+            getFirestore,
+            collection,
+            doc,
+            addDoc,
+            getDoc,
+            getDocs,
+            updateDoc,
+            query,
+            where,
+            orderBy,
+            limit,
+            onSnapshot,
+            deleteDoc,
+            setDoc
+        } from 'https://www.gstatic.com/ajax/libs/firebase/9.22.0/firebase-firestore.js';
+
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyC4HhpXcYdGhvFRIz4IHksilgnMnRDbiS8",
+            authDomain: "victory-fb944.firebaseapp.com",
+            projectId: "victory-fb944",
+            storageBucket: "victory-fb944.firebasestorage.app",
+            messagingSenderId: "650310438797",
+            appId: "1:650310438797:web:c0bd9a1caaa6093d5137c4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        // Make globally available
+        window.auth = auth;
+        window.db = db;
+        window.googleProvider = googleProvider;
+        window.firebaseAuth = {
+            signInWithEmailAndPassword,
+            createUserWithEmailAndPassword,
+            signInWithPopup,
+            firebaseSignOut,
+            onAuthStateChanged,
+            updateProfile,
+            GoogleAuthProvider
+        };
+        window.firestore = { collection, doc, addDoc, getDoc, getDocs, updateDoc, query, where, orderBy, limit, onSnapshot, deleteDoc, setDoc };
+
+        // Simple authentication for dashboard
+        window.firebaseAuth.onAuthStateChanged(window.auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update UI
+            document.getElementById('user-name').textContent = user.displayName || user.email;
+            document.getElementById('user-avatar').textContent = (user.displayName || user.email).charAt(0).toUpperCase();
+            document.getElementById('welcome-name').textContent = `Welcome back, ${user.displayName || 'Partner'}!`;
+
+            // Load dashboard data
+            loadDashboardData(user);
+        });
+
+        // Simple logout
+        function signOut() {
+            window.firebaseAuth.firebaseSignOut(window.auth);
+        }
+
+        // Load dashboard data
+        function loadDashboardData(user) {
+            // This would normally fetch real data from Firestore
+            // For now, we'll show placeholder data
+            document.getElementById('partners-count').textContent = '12';
+            document.getElementById('encouragements-count').textContent = '47';
+            document.getElementById('victories-count').textContent = '23';
+            document.getElementById('days-active').textContent = '15';
+        }
+
+        // Make signOut function globally available
+        window.signOut = signOut;
+    </script>
+</body>
+</html>
