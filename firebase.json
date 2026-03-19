@@ -14,6 +14,15 @@
     ],
     "headers": [
       {
+        "source": "**/*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
         "source": "/sw.js",
         "headers": [
           {
@@ -28,9 +37,20 @@
           {
             "key": "Content-Type",
             "value": "application/manifest+json"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
           }
         ]
       }
     ]
+  },
+  "targets": {
+    "purposepartner": {
+      "hosting": {
+        "site": "purposepartner"
+      }
+    }
   }
 }
