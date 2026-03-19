@@ -21,7 +21,7 @@ self.addEventListener('push', (event) => {
 
   if (event.data) {
     try {
-      notificationData = event.data.json();
+      notificationData = JSON.parse(event.data.text());
     } catch (e) {
       console.error('Error parsing push data:', e);
       notificationData = {
