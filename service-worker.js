@@ -17,48 +17,21 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('push', (event) => {
   console.log('Push received:', event);
 
-  let notificationData = {};
+  let payload = { title: "Notification", body: "" };
 
-  if (event.data) {
-    try {
-      notificationData = JSON.parse(event.data.text());
-    } catch (e) {
-      console.error('Error parsing push data:', e);
-      notificationData = {
-        title: 'PurposePartner',
-        body: 'You have a new message from your accountability partner.',
-        icon: 'icons/icon-192.png'
-      };
-    }
+  try {
+    payload = event.data.json(); // parse JSON if possible
+  } catch (e) {
+    payload.body = event.data.text(); // fallback to plain text
   }
 
-  const options = {
-    body: notificationData.body || 'New notification from PurposePartner',
-    icon: 'icons/icon-192.png',
-    badge: 'icons/icon-192.png',
-    tag: 'purposepartner-notification',
-    renotify: true,
-    actions: [
-      {
-        action: 'open',
-        title: 'Open PurposePartner',
-        icon: 'icons/icon-192.png'
-      },
-      {
-        action: 'dismiss',
-        title: 'Dismiss'
-      }
-    ],
-    data: {
-      url: notificationData.url || 'dashboard.html'
-    }
-  };
-
   event.waitUntil(
-    self.registration.showNotification(
-      notificationData.title || 'PurposePartner',
-      options
-    )
+    self.registration.showNotification(payload.title, {
+      body: payload.body,
+      icon: "/icons/icon-192.png",
+      tag: "blocked-site",
+      renotify: true
+    })
   );
 });
 
