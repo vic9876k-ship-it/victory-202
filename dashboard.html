@@ -309,7 +309,7 @@
                         if (change.type === "added") {
                             const data = change.doc.data();
                             console.log("Data received:", data); // Debug: Check what data we get
-                            showBlockedNotification(data);
+                            showNotification(data);
                         }
                     });
                 }, (error) => {
@@ -331,17 +331,15 @@
         });
 
         // Notification helper function
-        function showBlockedNotification(data) {
-            const site = data.site || data.blockedUrl || "Unknown site";
-            
-            // Temporary test: Force visible alert
-            alert("Blocked: " + site); // Debug: Test if data is reaching here
-            
-            // Use service worker for proper PWA notifications
+        function showNotification(data) {
+            const site = data.site || "Unknown";
+
             navigator.serviceWorker.ready.then((registration) => {
                 registration.showNotification("Blocked Site 🚫", {
                     body: `You blocked: ${site}`,
-                    icon: "/icons/icon-192.png"
+                    icon: "/icons/icon-192.png",
+                    tag: "blocked-site",
+                    renotify: true
                 });
             });
         }
