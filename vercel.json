@@ -2,6 +2,27 @@
   "version": 2,
   "routes": [
     {
+      "src": "/login.html",
+      "dest": "/login.html",
+      "headers": {
+        "cache-control": "no-cache, no-store, must-revalidate"
+      }
+    },
+    {
+      "src": "/signup.html",
+      "dest": "/signup.html",
+      "headers": {
+        "cache-control": "no-cache, no-store, must-revalidate"
+      }
+    },
+    {
+      "src": "/dashboard.html",
+      "dest": "/dashboard.html",
+      "headers": {
+        "cache-control": "no-cache, no-store, must-revalidate"
+      }
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html",
       "headers": {
