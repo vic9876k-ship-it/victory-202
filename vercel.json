@@ -2,32 +2,32 @@
   "version": 2,
   "routes": [
     {
-      "src": "/login.html",
-      "dest": "/login.html",
-      "headers": {
-        "cache-control": "no-cache, no-store, must-revalidate"
-      }
+      "src": "/login",
+      "dest": "/login.html"
     },
     {
-      "src": "/signup.html",
-      "dest": "/signup.html",
-      "headers": {
-        "cache-control": "no-cache, no-store, must-revalidate"
-      }
+      "src": "/signup", 
+      "dest": "/signup.html"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "/dashboard.html"
+    },
+    {
+      "src": "/login.html",
+      "dest": "/login.html"
+    },
+    {
+      "src": "/signup.html", 
+      "dest": "/signup.html"
     },
     {
       "src": "/dashboard.html",
-      "dest": "/dashboard.html",
-      "headers": {
-        "cache-control": "no-cache, no-store, must-revalidate"
-      }
+      "dest": "/dashboard.html"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html",
-      "headers": {
-        "cache-control": "no-cache, no-store, must-revalidate"
-      }
+      "dest": "/index.html"
     }
   ]
 }
