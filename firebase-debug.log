@@ -1,101 +1,119 @@
-[debug] [2025-11-27T04:31:38.525Z] ----------------------------------------------------------------------
-[debug] [2025-11-27T04:31:38.533Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting --debug
-[debug] [2025-11-27T04:31:38.534Z] CLI Version:   14.20.0
-[debug] [2025-11-27T04:31:38.534Z] Platform:      win32
-[debug] [2025-11-27T04:31:38.534Z] Node Version:  v22.20.0
-[debug] [2025-11-27T04:31:38.535Z] Time:          Wed Nov 26 2025 20:31:38 GMT-0800 (Pacific Standard Time)
-[debug] [2025-11-27T04:31:38.535Z] ----------------------------------------------------------------------
+[debug] [2026-03-19T00:44:17.255Z] ----------------------------------------------------------------------
+[debug] [2026-03-19T00:44:17.264Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --project victory-fb944 --only hosting --public . --force --debug
+[debug] [2026-03-19T00:44:17.266Z] CLI Version:   14.27.0
+[debug] [2026-03-19T00:44:17.267Z] Platform:      win32
+[debug] [2026-03-19T00:44:17.267Z] Node Version:  v22.20.0
+[debug] [2026-03-19T00:44:17.268Z] Time:          Wed Mar 18 2026 17:44:17 GMT-0700 (Pacific Daylight Time)
+[debug] [2026-03-19T00:44:17.268Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2025-11-27T04:31:39.186Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2025-11-27T04:31:39.189Z] > authorizing via signed-in user (vic9876k@gmail.com)
-[debug] [2025-11-27T04:31:39.190Z] [iam] checking project victory-fb944 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
-[debug] [2025-11-27T04:31:39.195Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:39.197Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:39.199Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions [none]
-[debug] [2025-11-27T04:31:39.200Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions x-goog-quota-user=projects/victory-fb944
-[debug] [2025-11-27T04:31:39.202Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
-[debug] [2025-11-27T04:31:41.302Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions 200
-[debug] [2025-11-27T04:31:41.304Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
-[debug] [2025-11-27T04:31:41.306Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:41.312Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:41.314Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/victory-fb944 [none]
-[debug] [2025-11-27T04:31:41.794Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/victory-fb944 200
-[debug] [2025-11-27T04:31:41.795Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/victory-fb944 {"projectId":"victory-fb944","projectNumber":"650310438797","displayName":"Victory","name":"projects/victory-fb944","resources":{"hostingSite":"victory-fb944"},"state":"ACTIVE","etag":"1_08b7f616-dff1-4e17-93b9-587870b989e2"}
+[debug] [2026-03-19T00:44:18.382Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"targets"}
+[debug] [2026-03-19T00:44:18.408Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-03-19T00:44:18.412Z] > authorizing via signed-in user (vic9876k@gmail.com)
+[debug] [2026-03-19T00:44:18.415Z] [iam] checking project victory-fb944 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-03-19T00:44:18.423Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:18.426Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:18.436Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions [none]
+[debug] [2026-03-19T00:44:18.437Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions x-goog-quota-user=projects/victory-fb944
+[debug] [2026-03-19T00:44:18.439Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-03-19T00:44:20.099Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions 200
+[debug] [2026-03-19T00:44:20.100Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/victory-fb944:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-03-19T00:44:20.102Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:20.102Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:20.104Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/victory-fb944 [none]
+[debug] [2026-03-19T00:44:20.704Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/victory-fb944 200
+[debug] [2026-03-19T00:44:20.705Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/victory-fb944 {"projectId":"victory-fb944","projectNumber":"650310438797","displayName":"Victory","name":"projects/victory-fb944","resources":{"hostingSite":"victory-fb944"},"state":"ACTIVE","etag":"1_08b7f616-dff1-4e17-93b9-587870b989e2"}
 [info] 
 [info] === Deploying to 'victory-fb944'...
 [info] 
 [info] i  deploying hosting 
-[debug] [2025-11-27T04:31:41.805Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:41.811Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:41.812Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions [none]
-[debug] [2025-11-27T04:31:41.814Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
-[debug] [2025-11-27T04:31:43.849Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions 200
-[debug] [2025-11-27T04:31:43.850Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions {"name":"projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-03-19T00:44:20.725Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:20.725Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:20.726Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions [none]
+[debug] [2026-03-19T00:44:20.727Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-03-19T00:44:23.778Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions 200
+[debug] [2026-03-19T00:44:23.779Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions {"name":"projects/650310438797/sites/victory-fb944/versions/75a4a2148177d778","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
 [info] i  hosting[victory-fb944]: beginning deploy... 
-[info] i  hosting[victory-fb944]: found 10 files in deploy 
-[debug] [2025-11-27T04:31:43.902Z] [hosting] uploading with 200 concurrency
-[debug] [2025-11-27T04:31:43.911Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:43.913Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:43.916Z] [hosting] hash cache [ZGVwbG95] stored for 10 files
-[debug] [2025-11-27T04:31:43.916Z] [hosting][hash queue][FINAL] {"max":3,"min":1,"avg":1,"active":0,"complete":10,"success":10,"errored":0,"retried":0,"total":10,"elapsed":10}
-[debug] [2025-11-27T04:31:43.919Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8:populateFiles [none]
-[debug] [2025-11-27T04:31:43.920Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8:populateFiles {"files":{"/sw.js":"ad71941adcc999610e8eb81f4457259228f3f34811d195ed00c2b78baf249685","/signup.html":"e985d00007f910424f70039d58250e5c53fcdb3f04f6634cb8a27f1901cc0280","/offline.html":"6adccb5cf7a3d17a5d1bd07837dc00a401bdd9d327c230d6db0a74c6609381e3","/manifest.json":"cb89b150e15c87ef5c4e6753ed8820f8a43ad894e7f8fca312755ea073be332e","/login.html":"967874121a8be58a2fb6a27496b63180b3e5f0963a2e11345dd594049229c51f","/index.html":"6e860e821a4cf2a6db2fdeaba4f9369a89e5c3b8e83aeb455950f00fde0b53db","/firebase-config.js":"f049fbc31eaa6639a8d28ed887648eedbe225d220b04548e14a097330467bd54","/dashboard.html":"039a03863be83e89d63766daccb44b8334b3ef1b8b0d3dd1e63a8cd9bad15eb9","/icons/icon-512.png":"c6dfe9e9ad1e7ce8f4d2d21ceb994ca9c9edb686c2c4e7fa75749a077238fa6d","/icons/icon-192.png":"ffe1ec2da7c2c4caf4b11494ba8a51fc092fda1f2e3f12a2e6848fceea846ce8"}}
-[debug] [2025-11-27T04:31:44.425Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8:populateFiles 200
-[debug] [2025-11-27T04:31:44.426Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/victory-fb944/versions/b79b4bc6fcc9f6b8/files"}
-[debug] [2025-11-27T04:31:44.428Z] [hosting][populate queue][FINAL] {"max":517,"min":517,"avg":517,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":518}
-[debug] [2025-11-27T04:31:44.429Z] [hosting] uploads queued: 0
-[debug] [2025-11-27T04:31:44.430Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1764217904430}
+[info] i  hosting[victory-fb944]: found 100 files in . 
+[debug] [2026-03-19T00:44:23.956Z] [hosting] uploading with 200 concurrency
+[debug] [2026-03-19T00:44:23.995Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:23.999Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:24.003Z] [hosting] hash cache [] stored for 100 files
+[debug] [2026-03-19T00:44:24.006Z] [hosting][hash queue][FINAL] {"max":17,"min":0,"avg":4.607441807501967,"active":0,"complete":100,"success":100,"errored":0,"retried":0,"total":100,"elapsed":44}
+[debug] [2026-03-19T00:44:24.008Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/75a4a2148177d778:populateFiles [none]
+[debug] [2026-03-19T00:44:24.010Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/75a4a2148177d778:populateFiles {"files":{"/_redirects":"0086dab2007297ddaf5fa8f7daf97837ac7fca30f0ac832b69110448e864ac73","/vercel.json":"ad9e616d5fce890a38240f1fa87a96328268e59a7e6fa1f468a4abb6ef19b948","/sw.js":"7bc26bc441720dc83eba7e0a0a99579460ff08a025d3a84bcc950c8df5b3ec20","/signup.html":"b60303e03c348a87fc55d6f568811f2b36fe391b3d44ae0308f7e0bcf34a521b","/README.md":"27b49e04ca8e4362770685bbcf656806e5ff58748f62fa949f0bcb266e5911e0","/offline.html":"6adccb5cf7a3d17a5d1bd07837dc00a401bdd9d327c230d6db0a74c6609381e3","/netlify.toml":"ed7c7300d5710c8af6d7187203bba3530d11114ee519da41371ea3b602dc338e","/manual-deploy.bat.bak":"46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e","/manifest.json":"562595f330bc9cf1a00cb8f9eac39c292ea669c85823db8f2d3b73b9aab1fdd2","/login.html":"7b9a4ffdbc92db3777ad9cf97df2a1709a67a9c2d6957c258e40ade4cf886581","/index.html":"2e3a713193af6eac33f9b7b7b5c8674b0ced26ce38c4e2ebae4f66bbf3a65158","/generate-icons.ps1.bak":"ab840d9e667ad4399f594c9810bcda11ab2c66bf5febf21a45ee44f7e4465fbd","/firebaseInit.js":"2fa42f5e47ce6439d2dc49ecf5e7a580165245736d32a0bb24ea1d70af2d0291","/firebase-config.js":"f049fbc31eaa6639a8d28ed887648eedbe225d220b04548e14a097330467bd54","/favicon.ico":"cdbb2799eebb195156e2f3b4faf76a40320c49b5f34689d666a92d6a01ff7e0e","/deploy-netlify.bat.bak":"46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e","/debug.html":"4ce179b05384ae6a8b995998c2bee1e8cda80dd6b641ef40a900e16236e57cf1","/dashboard_with_notifications.html":"2fdfaab883caa4b2f43e6a8109fc2a868b4d9137a638f84210f2e011d7a04249","/dashboard_full_ui_firebase_ready.html":"b9eeb387438f044ed342eb176f8ba76df80f3c41298918a7058cd4b09203ed8d","/dashboard.html":"5a5de453ec49edd2741bd4623581dfed74a02b381739f464389da8ae05537ffa","/authGuard.js":"50505bfc94c46eabf9bcbf53f6b034e6ca9e273f4de278ff0d3cf2764d7e71ce","/victory-deploy/vercel.json":"8ecc278a6d3fd405c53fa4a295b1f4ecf24107389517cb5892db3f9c60932bf7","/victory-deploy/sw.js":"37c21718947ac15d41e0e4006a17fbe5249002cfc96d3e3d2b1a5ca11bd300f3","/victory-deploy/signup.html":"66e5986632b22550606ac9d5598108a2d208c10ca025f4b0ec1eb140254549e9","/victory-deploy/README.md":"02f550dea5a5b894e52c0c42a1ca2500c4a750f47c9e76f5a184897385a5be8f","/victory-deploy/offline.html":"d103ccea145770dc9c969f26e5da3a53002ea73786d50c347c997cb8196db4bf","/victory-deploy/manifest.json":"cc76ae260d6736c30e037c9afab11d74b9ce879570caef4ae681ac28f7f948a5","/victory-deploy/login.html":"531ed33a568d60c800212c44bd61f5a76d5efaa7cb2f134d297dbdc43e194351","/victory-deploy/index.html":"5535d92c7c600273e4ae704438633e3b4380c369605b69a3503905cb753d6c62","/victory-deploy/dashboard.html":"eb82841b4b75f8378b8c267c9bf31c59ceca46036b7ed54654bdb14eab53dca4","/icons/icon48.png":"fe40b6d6884ce4488813fa6f21dfcfcf1dbe9c52a386324f2e01e6e235e5e0c3","/icons/icon128.png":"eb74c946b2feba8fe33cc3cd531956854f29fc7839da60971be8c473b58b301c","/.git/index":"1a06c498f0b35c871b502e0d526cc142cc261d40ac4e6a44561b7ed03ee700df","/.git/HEAD":"23960fa2316fb1cd093c7920df1e9c864ee8c2d784908f7372cd5da920fc3d48","/.git/description":"82406efccfbaa0195ef86e8c8aa8fc71d38fb93a6aa0fbd00d90629d3bbe2342","/.git/config":"166542cc987f2960d776e00b62fd699be639dfc88f350e48b5c8ad96d365fa82","/.git/COMMIT_EDITMSG":"965cd45638f4255c2e60cd17fcf236d56ee1e0b9e4e085f8e440703875f0f383","/.git/refs/remotes/origin/master":"370f31fd04ccb7c5cba6fdbf363d46f970d40cc839d75494caee7cdb69c9e794","/.git/refs/remotes/origin/main":"370f31fd04ccb7c5cba6fdbf363d46f970d40cc839d75494caee7cdb69c9e794","/.git/refs/heads/master":"370f31fd04ccb7c5cba6fdbf363d46f970d40cc839d75494caee7cdb69c9e794","/.git/refs/heads/main":"370f31fd04ccb7c5cba6fdbf363d46f970d40cc839d75494caee7cdb69c9e794","/.git/objects/f4/1687125083f90962ef992fc0e6725366c1536a":"171d7ecb4a691f5ae98fc45e452e3c1f18faab67ca8af6cf0d889dc73382b1dd","/.git/objects/f1/b4778658539ebb8485af9cb785ecdd6291b972":"1b656b583ac718986762bddb0199b9c08d9db24b2feb8139f14712c06ecb2f8d","/.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391":"3ac4fe720dfc516560f3e7ef01dc2753a2f646e7a87dbce1df99f991b7bce18a","/.git/objects/e4/ff79de96735e26ffec38edb25ec9237e798742":"439ef88c40720caed1ad1f1b6940dd1b5990e05c71667cb21b85906a9250310e","/.git/objects/e4/26bd9d86b0eb676f8b01a93af9fd6d3cd034cd":"33cfa0bb56a478ea993ee99d9876a7fe4b6ff17fee1d913edf5537e9ba552720","/.git/objects/df/7bf0fdd3572325d83ecc24f464bc7d43701add":"ffed18311234bcb8c65c8e2e8f3a94b04cba5045d129eddce2b72ab3776755ad","/.git/objects/d6/4c33adacbe12692a120554caab2d094f8f1211":"34570a415a1c32b2eebfcdeecc5d12a3836ae39255bd6d4972fcc78c7b9bc2cf","/.git/objects/d2/953423a6fe579c954e3544f33421bd56306282":"caeaf739e55fdcc6b85f2392ee6f2074e76420a24dc7a77bf4dbd0852551cfeb","/.git/objects/d0/3e836f6a23e70d30712110c3f139bdf14b3f61":"2935772005fe12e708ce973b0fe807fba6f12ece11046c980398d6b33c32d61a","/.git/objects/c0/0d880c1a49ecd4dffcfa52d7cc3afdf6a84833":"f244bd5ab9b432a0b987c80e06cc45301f59cb7a9695902203ab147927e774bf","/.git/objects/b4/fc70e42b18d24a1317214e48846f98d9eeed08":"ccfc80db553478f9f53ef233aaa56baf3d546a9cb6bb5af92fb11058ea96b232","/.git/objects/ab/f71cc35d27116ea4b316e8424274e25f1d1cb9":"900089a801c047e8fbf602cafee4afc6291006501839d2b864a920584920f1b3","/.git/objects/a7/6a219db06884eb39b8a9373362b451d919e127":"7ce74418140744770ce84caa05102d1e9971f0c28a67d629d2ea06eaac2a622f","/.git/objects/a4/f9ad4f1bf905c99e8d9dffcb54c599be2fbecc":"550b98fd2643b55ff66d1fb17da4accb54b29b5abc26d64f7d8481fa767f05df","/.git/objects/98/47bbe10553b36605e958d09519d681b6fe3df0":"9537252aa9136575807fd83474218361173417da373467b313d786dd471e176f","/.git/objects/93/9f670a70e38de970d154131a1ac06590ae5f99":"4de8bf39cbb8cf32fb7f02a5564816684568d0ebcf578fc901bb9d413920ab98","/.git/objects/8f/47a5f7d75f97b06d63cab136a6fdb6fe8a8308":"ab5fa876a82ea94a908564bd3954cc00eed85ed3baabca6af39692cb769a59b2","/.git/objects/89/b6ce137519cbc0085f2b1b6ea175e009ff6885":"545bdc92511c91f54096d037e5054e0bc37578c22d325f1ecdfe74fcdf558c2a","/.git/objects/83/9699ccbd8711343ac8409caaa8bdfc3edfe4fe":"1b3951bd37df41a1a62074f7722dfc3bcf3e1b487f75af77751cb314eb4a05d8","/.git/objects/80/ae59b60bf0247960f1669d050f72143790b9d4":"76f12820ad6cf54e20b5fbe53ba98f6879c176b8a03ac119869b23642ead68f2","/.git/objects/7d/b5295d1e3bae9331b3491431c61ae0cebdb84c":"b8ef8f98708a16359637e7977901964092938297b7710dd888bebc8ea1c08b06","/.git/objects/77/97f7c6a7356b0d451d11a49925df854c22e978":"674959445bde705e8d81a6214e2724ef0495e092f36e1df37d8d822650afcd6d","/.git/objects/71/aa23c92e7aca895a657fab98cd77f430b67753":"71101d5486d6258d266d72c31ba9b9047fe7b3b55243ca0d9260b91b9f7e002c","/.git/objects/61/26541ece2f601322b7424f69e9b004c7730e44":"87028135f9f190b0f358f40c307218b68aaab0978383fb06f51bc0129c0a9cef","/.git/objects/58/054aedf1722a0aba83c4426295d6792a703af9":"cb2c27c4d3893846d93a3c68ecaa110eeaf9fc5b43599a0cd3115722f2572b47","/.git/objects/48/203fbd00e84dd22e87b42234b62a4c70161461":"eada37849a8c32174da52480176cecf32aeef0e3f9e0ef6a05c8dc0d93c099fd","/.git/objects/46/c8b02b5a8da61bb94c082843b346445fca4e9f":"d4860de0097b81ea1fb287e30834de60f364736b8b46f7f45a1ccf0bc514ee8f","/.git/objects/44/1e6e02954535d424cc34644fc8cce149a8ff1f":"2b91508662924b67c44babfa27309adb4fb01de28efe2b1dba2e492fb0c4492a","/.git/objects/3c/aa4bd3b2ed3b3edacd3cb2a30aef2eed0e039f":"259a42b624be27ff34d9e365064c906ad87aa3e124ec9fca73c45e6f35ceefbc","/.git/objects/37/d0b3ba0096b5730f7e3c3112eb3ce1f0a6a24c":"72e6eafe98444bc3cc2ceab3a5be2f7af1356b7bc2d14211e6ef6dd2c4c898a5","/.git/objects/2e/b6fc1d0b2f317653455f9933b0b22623736718":"f459ce1b9a95b7a4285985b46e932c5ad4cd5a15592a716cdfcbdef0dab247b2","/.git/objects/2a/eee9d872254865ec1ccef47948170f23957570":"fc1cc98278583075d18d1bba26fef3dd697009d002c0f85817346f30940e2b98","/.git/objects/22/39f84ef13a1f7a19b80468fa8dd39dbbc71ddb":"05265d39f90ceadd446173917fbbdf10cb08574862b2c69f33a3def5d6f4bba2","/.git/objects/20/61cdbfdee865cf686bb836a43b61c06f392527":"2ea3a27ecef824e59cddf655f03aad1bd5895d8cc1e8834b8573bce22e2b99cd","/.git/objects/1b/9229df997fe8e5e015c802aa4b12dd211d5229":"575aea008140f165c50283bd4549e242594b1f026f0c15501ab96052e2ac1eb9","/.git/objects/18/61494cdc367edcaab7b6a0d614e87e9f1502cb":"acd0e168783b8e0bbe64a4ca7301f11afe64d3ce2062d286b446d13bcfeade42","/.git/objects/0c/caa836c7e8c4292796ce859a07eb5204fa69dc":"14f7ff286fc644b1e3ea0c41ed38827abaf79e13de5c4099398c030e9cdc7be4","/.git/objects/0b/fb5e9d8c4a3409294ce9dc93a2d113f3ffed19":"ef10f412c0569c8a52529379556a663a4fbee253e3977fd82de9b885bd7acf9f","/.git/objects/04/bda1bab4760466589e58f3e12711e1c279352e":"839e92c5366e419a704d7c64d6b6eeb2f12e9c18ee37ec7fc53317ff058f72ce","/.git/logs/HEAD":"c948e78f009bedbf23a5c3a1466b87b09cf6bd089c0f135a1852a5b161972602","/.git/logs/refs/remotes/origin/master":"7f21d61014ab451208d6a829a7601fd8f8a2f5882c5854f7286cc67e362a421d","/.git/logs/refs/remotes/origin/main":"79a931834a873c0409751bb4be2bdf0ac7b912ef9d041d3995b6f6a6ec69128b","/.git/logs/refs/heads/master":"058aa45c8cdb59e76bd9f5598bc905fd50801758edf18b9a069a43d0101339e0","/.git/logs/refs/heads/main":"d61ce06fe8b80dff03c1e023eeb22a91b56cf3a5871fd63b2368ea02cb3dc5cf","/.git/info/exclude":"994a83b0bd13a31e35114caf18e8b7fcff4253406797d657aa1d9ea64c7b721d","/.git/hooks/update.sample":"a022fa3ca5c3a9dffa3c09dc035866a2c4e6e935a372724aabba8dd6a5639fee","/.git/hooks/sendemail-validate.sample":"5179ae7bdd72e97e2d9cdbfcec1e72434f42f7f5748665239355f08badcbbee7","/.git/hooks/push-to-checkout.sample":"b686f0c3faae36d5e3110bd8933f861039094c0a996e5c55c3a776a209ca119b","/.git/hooks/prepare-commit-msg.sample":"da47e5ee9571edfcb45598d9e1ed424dc30a87011c99c5d205015bbc8cfe16cc","/.git/hooks/pre-receive.sample":"518430951f2c7182a5fc07191f43236719c64a5244e0ac82131ea92dbe4a2f67","/.git/hooks/pre-rebase.sample":"4c12afd92c797d205ded918d4da7fff21f264e3347ccfe1f718df372100dea0e","/.git/hooks/pre-push.sample":"661c005b1ebf95bb520578d7421bf511e0d91ecac507fc1818ee60c2e3127f64","/.git/hooks/pre-merge-commit.sample":"08d54483ffa10c472d4b5bf54e637a763a905f6909af1491ad4ca8a19241496c","/.git/hooks/pre-commit.sample":"0dc110f82f15687bb7daae0e09828a248ba74bacc4373b6c5e395fa1140853ef","/.git/hooks/pre-applypatch.sample":"efd041617b404639750884bd01917d80c6ec9917e3021e448a1386a237184a36","/.git/hooks/post-update.sample":"4545774e0eba6264d25197fec3cc1520bfd61d16bf6b417b7b1566460ebc28ec","/.git/hooks/fsmonitor-watchman.sample":"c7efd67fa8de750df765a1cf18a7bdf6c2298ab4a4ab1eed2772a32e4fd9725d","/.git/hooks/commit-msg.sample":"00ffdd1510ab6aa72447787ad1516c9bea8345a9cf6ac5345afb1f44aba07f6f","/.git/hooks/applypatch-msg.sample":"e989aeea500fde675ea8ee009c4cf25aae7abbf4dd02c15b04cb8c85404dbca3"}}
+[debug] [2026-03-19T00:44:25.137Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/75a4a2148177d778:populateFiles 200
+[debug] [2026-03-19T00:44:25.139Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/650310438797/sites/victory-fb944/versions/75a4a2148177d778:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/victory-fb944/versions/75a4a2148177d778/files"}
+[debug] [2026-03-19T00:44:25.143Z] [hosting][populate queue][FINAL] {"max":1148,"min":1148,"avg":1148,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1149}
+[debug] [2026-03-19T00:44:25.144Z] [hosting] uploads queued: 0
+[debug] [2026-03-19T00:44:25.146Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1773881065146}
 [info] i  hosting: upload complete 
 [info] +  hosting[victory-fb944]: file upload complete 
-[debug] [2025-11-27T04:31:44.434Z] [hosting] deploy completed after 575ms
-[debug] [2025-11-27T04:31:44.435Z] [
+[debug] [2026-03-19T00:44:25.149Z] [hosting] deploy completed after 1360ms
+[debug] [2026-03-19T00:44:25.150Z] [
   {
     "config": {
-      "site": "victory-fb944",
-      "public": "deploy",
+      "public": ".",
       "ignore": [
         "firebase.json",
         "**/.*",
-        "**/node_modules/**",
-        "**/*.exe",
-        "**/*.msi",
-        "**/*.bat",
-        "**/*.cmd",
-        "**/*.ps1",
-        "**/*.sh",
-        "**/*.dll",
-        "**/*.so",
-        "**/*.dylib",
-        "**/generate-icons.ps1",
-        "**/deploy-*.bat",
-        "**/manual-*.bat",
-        "**/temp/**",
-        "**/tmp/**"
+        "**/node_modules/**"
       ],
-      "cleanUrls": true,
-      "trailingSlash": false,
       "rewrites": [
         {
           "source": "**",
           "destination": "/index.html"
         }
-      ]
+      ],
+      "headers": [
+        {
+          "source": "**/*.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/sw.js",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/manifest.json",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/manifest+json"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        }
+      ],
+      "site": "victory-fb944"
     },
-    "version": "projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8"
+    "version": "projects/650310438797/sites/victory-fb944/versions/75a4a2148177d778"
   }
 ]
 [info] i  hosting[victory-fb944]: finalizing version... 
-[debug] [2025-11-27T04:31:44.448Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:44.448Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:44.450Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/b79b4bc6fcc9f6b8 updateMask=status%2Cconfig
-[debug] [2025-11-27T04:31:44.453Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/b79b4bc6fcc9f6b8 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}],"cleanUrls":true,"trailingSlashBehavior":"REMOVE"}}
-[debug] [2025-11-27T04:31:44.764Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/b79b4bc6fcc9f6b8 200
-[debug] [2025-11-27T04:31:44.765Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/b79b4bc6fcc9f6b8 {"name":"projects/650310438797/sites/victory-fb944/versions/b79b4bc6fcc9f6b8","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}],"cleanUrls":true,"trailingSlashBehavior":"REMOVE"},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2025-11-26T17:31:25.257601Z","createUser":{"email":"vic9876k@gmail.com"},"finalizeTime":"2025-11-26T17:31:26.497314Z","finalizeUser":{"email":"vic9876k@gmail.com"}}
-[debug] [2025-11-27T04:31:44.768Z] [hosting] finalized version for victory-fb944:[object Object]
+[debug] [2026-03-19T00:44:25.175Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:25.177Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:25.179Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/75a4a2148177d778 updateMask=status%2Cconfig
+[debug] [2026-03-19T00:44:25.180Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/75a4a2148177d778 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}],"headers":[{"glob":"**/*.html","headers":{"Cache-Control":"no-cache, no-store, must-revalidate"}},{"glob":"/sw.js","headers":{"Cache-Control":"no-cache, no-store, must-revalidate"}},{"glob":"/manifest.json","headers":{"Content-Type":"application/manifest+json","Cache-Control":"no-cache, no-store, must-revalidate"}}]}}
+[debug] [2026-03-19T00:44:26.800Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/75a4a2148177d778 200
+[debug] [2026-03-19T00:44:26.801Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/versions/75a4a2148177d778 {"name":"projects/650310438797/sites/victory-fb944/versions/75a4a2148177d778","status":"FINALIZED","config":{"headers":[{"headers":{"Cache-Control":"no-cache, no-store, must-revalidate"},"glob":"**/*.html"},{"headers":{"Cache-Control":"no-cache, no-store, must-revalidate"},"glob":"/sw.js"},{"headers":{"Cache-Control":"no-cache, no-store, must-revalidate","Content-Type":"application/manifest+json"},"glob":"/manifest.json"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-03-18T14:46:55.667497Z","createUser":{"email":"vic9876k@gmail.com"},"finalizeTime":"2026-03-18T14:46:59.759964Z","finalizeUser":{"email":"vic9876k@gmail.com"}}
+[debug] [2026-03-19T00:44:26.804Z] [hosting] finalized version for victory-fb944:[object Object]
 [info] +  hosting[victory-fb944]: version finalized 
 [info] i  hosting[victory-fb944]: releasing new version... 
-[debug] [2025-11-27T04:31:44.769Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:44.770Z] Checked if tokens are valid: true, expires at: 1764220527660
-[debug] [2025-11-27T04:31:44.773Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/channels/live/releases versionName=projects%2F650310438797%2Fsites%2Fvictory-fb944%2Fversions%2Fb79b4bc6fcc9f6b8
-[debug] [2025-11-27T04:31:44.775Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/channels/live/releases {}
-[debug] [2025-11-27T04:31:45.128Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/channels/live/releases 200
+[debug] [2026-03-19T00:44:26.811Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:26.811Z] Checked if tokens are valid: true, expires at: 1773883538199
+[debug] [2026-03-19T00:44:26.813Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/channels/live/releases versionName=projects%2F650310438797%2Fsites%2Fvictory-fb944%2Fversions%2F75a4a2148177d778
+[debug] [2026-03-19T00:44:26.814Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/channels/live/releases {}
+[debug] [2026-03-19T00:44:28.552Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/victory-fb944/channels/live/releases 200

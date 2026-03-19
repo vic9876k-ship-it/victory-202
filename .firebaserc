@@ -7,6 +7,9 @@
       "hosting": {
         "pwa": [
           "victory-fb944"
+        ],
+        "purposepartner": [
+          "."
         ]
       }
     }
