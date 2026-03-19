@@ -268,10 +268,18 @@
             if (user) {
                 console.log("User authenticated:", user.uid);
                 
+                // Debug: Check service worker status
+                console.log("Service worker controller:", navigator.serviceWorker.controller);
+                
                 // Request notification permission
                 if (Notification.permission !== "granted") {
-                    Notification.requestPermission();
+                    Notification.requestPermission().then(permission => {
+                        console.log("Permission:", permission);
+                    });
                 }
+                
+                // Debug: Check current permission
+                console.log("Current notification permission:", Notification.permission);
                 
                 // Listen for blocked events from extension
                 const blockedEventsQuery = query(
@@ -282,9 +290,12 @@
                 );
 
                 onSnapshot(blockedEventsQuery, (snapshot) => {
+                    console.log("Snapshot triggered"); // Debug: Check if listener is firing
+                    
                     snapshot.docChanges().forEach((change) => {
                         if (change.type === "added") {
                             const data = change.doc.data();
+                            console.log("Data received:", data); // Debug: Check what data we get
                             showBlockedNotification(data);
                         }
                     });
@@ -310,11 +321,25 @@
         function showBlockedNotification(data) {
             const site = data.site || data.blockedUrl || "Unknown site";
             
-            if (Notification.permission === "granted") {
-                new Notification("Blocked Site 🚫", {
-                    body: `You blocked: ${site}`,
-                    icon: "/icons/icon-192.png"
+            // Temporary test: Force visible alert
+            alert("Blocked: " + site); // Debug: Test if data is reaching here
+            
+            // Try service worker notification first (PWA proper way)
+            if (navigator.serviceWorker.controller) {
+                navigator.serviceWorker.ready.then((registration) => {
+                    registration.showNotification("Blocked Site 🚫", {
+                        body: `You blocked: ${site}`,
+                        icon: "/icons/icon-192.png"
+                    });
                 });
+            } else {
+                // Fallback to regular notification
+                if (Notification.permission === "granted") {
+                    new Notification("Blocked Site 🚫", {
+                        body: `You blocked: ${site}`,
+                        icon: "/icons/icon-192.png"
+                    });
+                }
             }
         }
 
