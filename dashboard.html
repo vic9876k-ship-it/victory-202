@@ -241,7 +241,7 @@
     <script type="module">
         import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-        import { getFirestore, collection, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, collection, query, where, onSnapshot, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyC4HhpXcYdGhvFRIz4IHksilgnMnRDbiS8",
@@ -276,14 +276,16 @@
                 // Listen for blocked events from extension
                 const blockedEventsQuery = query(
                     collection(db, "blockedEvents"),
-                    where("userId", "==", user.uid)
+                    where("userId", "==", user.uid),
+                    orderBy("timestamp", "desc"),
+                    limit(1)
                 );
 
                 onSnapshot(blockedEventsQuery, (snapshot) => {
                     snapshot.docChanges().forEach((change) => {
                         if (change.type === "added") {
                             const data = change.doc.data();
-                            showBlockedNotification(data.blockedUrl);
+                            showBlockedNotification(data);
                         }
                     });
                 });
@@ -296,11 +298,13 @@
         });
 
         // Notification helper function
-        function showBlockedNotification(url) {
+        function showBlockedNotification(data) {
+            const site = data.site || data.blockedUrl || "Unknown site";
+            
             if (Notification.permission === "granted") {
-                new Notification("Blocked Website Attempt", {
-                    body: "You attempted to access: " + url,
-                    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%238B1538'/><path d='M30 40 L50 25 L70 40 L70 65 L30 65 Z' fill='white'/><circle cx='50' cy='55' r='8' fill='%238B1538'/></svg>"
+                new Notification("Blocked Site 🚫", {
+                    body: `You blocked: ${site}`,
+                    icon: "/icons/icon-192.png"
                 });
             }
         }
