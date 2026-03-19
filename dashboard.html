@@ -288,6 +288,15 @@
                             showBlockedNotification(data);
                         }
                     });
+                }, (error) => {
+                    console.error("Firestore listener error:", error);
+                    if (error.message.includes("requires an index")) {
+                        console.log("🔥 Firestore Index Required:");
+                        console.log("1. Click the Firebase Console link in the error message");
+                        console.log("2. Create the composite index for: userId (==) and timestamp (desc)");
+                        console.log("3. Wait for the index to build (1-2 minutes)");
+                        console.log("4. Refresh the dashboard page");
+                    }
                 });
                 
                 return;
