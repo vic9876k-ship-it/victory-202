@@ -259,6 +259,19 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => {
+                    console.log("Service Worker registered:", reg);
+                    return navigator.serviceWorker.ready;
+                })
+                .then(() => {
+                    console.log("Service Worker is ready");
+                })
+                .catch(err => console.error("SW registration failed:", err));
+        }
+
         // Set persistence to keep user logged in across page reloads
         await setPersistence(auth, browserLocalPersistence);
 
@@ -324,23 +337,13 @@
             // Temporary test: Force visible alert
             alert("Blocked: " + site); // Debug: Test if data is reaching here
             
-            // Try service worker notification first (PWA proper way)
-            if (navigator.serviceWorker.controller) {
-                navigator.serviceWorker.ready.then((registration) => {
-                    registration.showNotification("Blocked Site 🚫", {
-                        body: `You blocked: ${site}`,
-                        icon: "/icons/icon-192.png"
-                    });
+            // Use service worker for proper PWA notifications
+            navigator.serviceWorker.ready.then((registration) => {
+                registration.showNotification("Blocked Site 🚫", {
+                    body: `You blocked: ${site}`,
+                    icon: "/icons/icon-192.png"
                 });
-            } else {
-                // Fallback to regular notification
-                if (Notification.permission === "granted") {
-                    new Notification("Blocked Site 🚫", {
-                        body: `You blocked: ${site}`,
-                        icon: "/icons/icon-192.png"
-                    });
-                }
-            }
+            });
         }
 
         // Logout button event listener
