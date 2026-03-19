@@ -3,19 +3,14 @@ const CACHE_NAME = 'app-cache-v2';
 
 // Install event
 self.addEventListener('install', (event) => {
-  console.log('Service Worker installing.');
-  self.skipWaiting();
+  console.log("Service Worker installing.");
+  self.skipWaiting(); // forces immediate activation
 });
 
 // Activate event
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker activating.');
-  event.waitUntil(
-    caches.keys().then((keys) => Promise.all(
-      keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
-    ))
-  );
-  clients.claim();
+  console.log("Service Worker activating.");
+  event.waitUntil(self.clients.claim()); // takes control immediately
 });
 
 // Push event - handle incoming notifications
