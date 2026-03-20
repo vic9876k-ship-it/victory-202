@@ -311,7 +311,10 @@
                     snapshot.docChanges().forEach((change) => {
                         if (change.type === "added") {
                             const data = change.doc.data();
-                            showNotification(data);
+                            
+                            console.log("🔥 New blocked site:", data.site);
+                            
+                            showNotification(data); // 👈 THIS is the key trigger
                         }
                     });
                 }, (error) => {
