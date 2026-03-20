@@ -316,12 +316,13 @@
                             console.log("🔥 DATA:", change.doc.data());
                             console.log("🔥 NEW EVENT DETECTED:", data);
 
-                            // 🔔 Trigger notification
                             navigator.serviceWorker.ready.then((registration) => {
+                                console.log("🚀 Triggering notification for:", data.site);
+
                                 registration.showNotification("Blocked Site 🚫", {
-                                    body: `You blocked: ${data.site || data.url || "Unknown"}`,
+                                    body: `You blocked: ${data.site || "Unknown site"}`,
                                     icon: "/icons/icon-192.png",
-                                    tag: change.doc.id, // 👈 ensures uniqueness
+                                    tag: Date.now().toString(), // 👈 force unique notification
                                     renotify: true
                                 });
                             });
