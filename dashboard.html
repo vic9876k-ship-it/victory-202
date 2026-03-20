@@ -311,10 +311,17 @@
                     snapshot.docChanges().forEach((change) => {
                         if (change.type === "added") {
                             const data = change.doc.data();
-                            
-                            console.log("🔥 New blocked site:", data.site);
-                            
-                            showNotification(data); // 👈 THIS is the key trigger
+
+                            console.log("🔥 Firestore event:", data);
+
+                            navigator.serviceWorker.ready.then((registration) => {
+                                registration.showNotification("Blocked Site 🚫", {
+                                    body: `You blocked: ${data.site}`,
+                                    icon: "/icons/icon-192.png",
+                                    tag: "blocked-site",
+                                    renotify: true
+                                });
+                            });
                         }
                     });
                 }, (error) => {
