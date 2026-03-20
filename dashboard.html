@@ -241,7 +241,7 @@
     <script type="module">
         import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-        import { getFirestore, collection, query, where, onSnapshot, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, collection, query, orderBy, limit, onSnapshot } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyC4HhpXcYdGhvFRIz4IHksilgnMnRDbiS8",
@@ -300,29 +300,33 @@
                 console.log("Current notification permission:", Notification.permission);
                 
                 // Listen for blocked events from extension
-                const blockedEventsQuery = query(
+                const q = query(
                     collection(db, "blockedEvents"),
-                    where("userId", "==", user.uid),
                     orderBy("timestamp", "desc"),
-                    limit(1)
+                    limit(5)
                 );
 
-                onSnapshot(blockedEventsQuery, (snapshot) => {
+                onSnapshot(q, (snapshot) => {
                     snapshot.docChanges().forEach((change) => {
+
                         if (change.type === "added") {
                             const data = change.doc.data();
 
-                            console.log("🔥 Firestore event:", data);
+                            console.log("🔥 CHANGE TYPE:", change.type);
+                            console.log("🔥 DATA:", change.doc.data());
+                            console.log("🔥 NEW EVENT DETECTED:", data);
 
+                            // 🔔 Trigger notification
                             navigator.serviceWorker.ready.then((registration) => {
                                 registration.showNotification("Blocked Site 🚫", {
-                                    body: `You blocked: ${data.site}`,
+                                    body: `You blocked: ${data.site || data.url || "Unknown"}`,
                                     icon: "/icons/icon-192.png",
-                                    tag: "blocked-site",
+                                    tag: change.doc.id, // 👈 ensures uniqueness
                                     renotify: true
                                 });
                             });
                         }
+
                     });
                 }, (error) => {
                     console.error("Firestore listener error:", error);
