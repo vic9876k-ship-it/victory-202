@@ -317,12 +317,22 @@
                             console.log("🔥 NEW EVENT DETECTED:", data);
 
                             navigator.serviceWorker.ready.then((registration) => {
-                                console.log("🚀 Triggering notification for:", data.site);
+                                const rawSite = data.site || "unknown";
 
-                                registration.showNotification("Blocked Site 🚫", {
-                                    body: `You blocked: ${data.site || "Unknown site"}`,
+                                // 🔥 Clean the URL dynamically
+                                const cleanSite = rawSite
+                                    .replace(/^https?:\/\//, "")
+                                    .replace(/^www\./, "")
+                                    .split("/")[0];
+
+                                const message = `Access attempt blocked: ${cleanSite}`;
+
+                                console.log("🚀 Notification message:", message);
+
+                                registration.showNotification("Blocked Attempt 🚫", {
+                                    body: message,
                                     icon: "/icons/icon-192.png",
-                                    tag: Date.now().toString(), // 👈 force unique notification
+                                    tag: cleanSite + "-" + Date.now(), // ensures uniqueness per site
                                     renotify: true
                                 });
                             });
