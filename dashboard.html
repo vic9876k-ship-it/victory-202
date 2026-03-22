@@ -184,6 +184,16 @@
             <p>You are making a difference in people's lives through accountability and encouragement.</p>
         </section>
 
+        <!-- Pairing Section -->
+        <section style="margin: 20px 0; padding: 20px; background: var(--light-color); border-radius: 10px;">
+            <h3 style="color: var(--primary-color); margin-bottom: 15px;">Device Pairing</h3>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <input id="pairingCodeInput" placeholder="Enter pairing code" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;" />
+                <button id="pairDeviceBtn" style="padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Pair Device</button>
+            </div>
+            <div id="pairStatus" style="margin-top: 10px; color: var(--dark-color);"></div>
+        </section>
+
         <section class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number" id="partners-count">0</div>
@@ -216,7 +226,7 @@
     <script type="module">
         import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-        import { getFirestore, collection, query, orderBy, limit, onSnapshot } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, collection, query, where, orderBy, limit, onSnapshot, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyC4HhpXcYdGhvFRIz4IHksilgnMnRDbiS8",
@@ -255,6 +265,63 @@
         // Set persistence to keep user logged in across page reloads
         await setPersistence(auth, browserLocalPersistence);
 
+        // Check for paired device first
+        const pairedUserId = localStorage.getItem("pairedUserId");
+        console.log("Paired userId from localStorage:", pairedUserId);
+
+        // Pairing button event listener
+        document.getElementById("pairDeviceBtn").addEventListener("click", async () => {
+            const enteredCode = document.getElementById("pairingCodeInput").value.trim();
+            const pairStatus = document.getElementById("pairStatus");
+            
+            console.log("Entered pairing code:", enteredCode);
+            
+            if (!enteredCode) {
+                pairStatus.textContent = "Please enter a pairing code";
+                pairStatus.style.color = "var(--accent-color)";
+                return;
+            }
+
+            try {
+                // Query Firestore for pairing code
+                const pairingQuery = query(
+                    collection(db, "pairingCodes"),
+                    where("code", "==", enteredCode),
+                    where("isUsed", "==", false)
+                );
+
+                const querySnapshot = await getDocs(pairingQuery);
+                
+                if (querySnapshot.empty) {
+                    pairStatus.textContent = "Invalid or expired code";
+                    pairStatus.style.color = "var(--accent-color)";
+                    console.log("No pairing code found");
+                    return;
+                }
+
+                // Get the pairing document
+                const pairingDoc = querySnapshot.docs[0];
+                const userId = pairingDoc.data().userId;
+                
+                console.log("Paired userId:", userId);
+                
+                // Save locally
+                localStorage.setItem("pairedUserId", userId);
+                
+                // Mark as used
+                await updateDoc(pairingDoc.ref, { isUsed: true });
+                
+                pairStatus.textContent = "Device paired successfully!";
+                pairStatus.style.color = "var(--success-color)";
+                document.getElementById("pairingCodeInput").value = "";
+                
+            } catch (error) {
+                console.error("Pairing error:", error);
+                pairStatus.textContent = "Error pairing device";
+                pairStatus.style.color = "var(--accent-color)";
+            }
+        });
+
         onAuthStateChanged(auth, (user) => {
             console.log("Auth check fired", user);
 
@@ -275,13 +342,17 @@
                 console.log("Current notification permission:", Notification.permission);
                 
                 // Listen for blocked events from extension
-                const q = query(
-                    collection(db, "blockedEvents"),
-                    orderBy("timestamp", "desc"),
-                    limit(5)
-                );
+                if (pairedUserId) {
+                    console.log("Listening for user:", pairedUserId);
+                    
+                    const q = query(
+                        collection(db, "blockedEvents"),
+                        where("userId", "==", pairedUserId),
+                        orderBy("timestamp", "desc"),
+                        limit(10)
+                    );
 
-                onSnapshot(q, (snapshot) => {
+                    onSnapshot(q, (snapshot) => {
                     snapshot.docChanges().forEach((change) => {
 
                         if (change.type === "added") {
@@ -324,6 +395,9 @@
                         console.log("4. Refresh the dashboard page");
                     }
                 });
+                } else {
+                    console.log("No paired device - not listening for blocked events");
+                }
                 
                 return;
             }
