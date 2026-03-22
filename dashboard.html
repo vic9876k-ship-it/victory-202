@@ -285,7 +285,7 @@
             try {
                 // Query Firestore for pairing code
                 const pairingQuery = query(
-                    collection(db, "pairingCodes"),
+                    collection(db, "pairing"),
                     where("code", "==", enteredCode),
                     where("isUsed", "==", false)
                 );
